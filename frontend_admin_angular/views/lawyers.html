@@ -1,0 +1,76 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-9">
+        <h2>Lawyers</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="index.main">Home</a>
+            </li>
+            <li class="active">
+                <strong>Lawyers</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="ibox">
+        <div class="ibox-tools">
+            <a ui-sref="index.add_lawyer" class="btn btn-primary btn-xs">Add new lawyer</a>
+        </div>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="LawyerCtrl" ng-init="getLawyerList()">
+    <div class="row m-b-sm m-t-sm">
+        <div class="col-md-1">
+            <button ng-click="refresh()" type="button" id="loading-example-btn" class="btn btn-white btn-sm"><i class="fa fa-refresh"></i> Refresh</button>
+        </div>
+        <div class="col-md-8">
+            <div class="input-group">
+                <input type="text" placeholder="Search" class="input-sm form-control" ng-model="search.Lawyer.$">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-lg-4 list-group" ng-repeat="lawyer in lawyers | filter:search | startFrom: paginationLawyer.page * paginationLawyer.perPage | limitTo: paginationLawyer.perPage  ">
+                <div class="contact-box">
+                    <a ng-href="#/index/lawyer/{{lawyer.Lawyer.id}}">
+                        <div class="col-sm-4">
+                            <div class="text-center">
+                                
+                                    <div ng-if="lawyer.Lawyer.avatar">
+                                        <img alt="image" class="img-circle m-t-xs img-responsive" ng-src="{{url_lawyer_img}}{{lawyer.Lawyer.avatar}}">
+                                    </div>
+                                    <div ng-if="!lawyer.Lawyer.avatar">
+                                        <img alt="image" class="img-circle m-t-xs img-responsive" ng-src="{{url_lawyer_img}}lawyer2.png">
+                                    </div>
+
+                                <div class="m-t-xs font-bold">{{ lawyer.WorkArea.name }}</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <h3><strong>{{ lawyer.Lawyer.first_name }} {{ lawyer.Lawyer.last_name }}</strong></h3>
+
+                            <p>{{ lawyer.Lawyer.email }}</p>
+
+                            <address>
+                                <i class="fa fa-map-marker"></i> {{ lawyer.Lawyer.address}}<br>
+                                <br>
+                                <abbr title="Phone">Phone: </abbr> {{ lawyer.Lawyer.phone }}
+                            </address>
+                        </div>
+                        <div class="clearfix"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row col-md-5 col-md-offset-2">
+            <ul class="pagination">
+                <li><a href="" ng-click="paginationLawyer.prevPage()">&laquo;</a></li>
+                  <li ng-repeat="n in [] | range: paginationLawyer.numPages" ng-class="{active: n == paginationLawyer.page}">
+                  <a href="" ng-click="paginationLawyer.toPageId(n)">{{n + 1}}</a>
+                  </li>
+                  <li><a href="" ng-click="paginationLawyer.nextPage()">&raquo;</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

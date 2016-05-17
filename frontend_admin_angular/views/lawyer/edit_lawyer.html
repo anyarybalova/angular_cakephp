@@ -1,0 +1,143 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Add new lawyer</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="index.main">Home</a>
+            </li>
+            <li>
+                <a ui-sref="index.lawyers" >Lawyers</a>
+            </li>
+            <li class="active">
+                <strong>Edit lawyer</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+<div class="row">
+    <div class="col-lg-8 col-md-8 col-sm-6">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h2><strong>Lawyer information</strong></h2>
+
+               
+            </div>
+            <div class="ibox-content" ng-controller="LawyerCtrl"  ng-init="getWorkAreas()" >
+                
+                <form class="form-horizontal" ng-submit="editFormLawyer(lawyer_id)" ng-init="getLawyerDataEdit()" >
+                            <div class="row ">
+                                <div class="col-md-3">
+                                    <div ng-if="avatar">
+                                         <img alt="image_lawyer" ng-model="avatar" class="img-circle m-t-xs img-responsive " ng-src="{{url_lawyer_img}}{{avatar}}">
+                                    </div>
+                                    <div ng-if="!avatar">
+                                        <img alt="image_lawyer" class="img-circle m-t-xs img-responsive" ng-src="{{url_lawyer_img}}lawyer2.png">
+                                    </div>
+                                   <!-- <input type="file" id="files" ng-model="new_file" ng-click="changePhoto(lawyer_id)">-->
+                                    <input type="file"  ng-model="new_file" file >
+                                    <!---<file name="image" ng-model="inputFile" accept="image/png,image/jpg,image/jpeg" />-->
+                                </div>
+                               
+                            
+                            </div>
+
+                        <h3>Personal information</h3>
+                            <div class="form-group col-offset-2">
+                                <label class="col-sm-2 control-label">First Name</label>
+                                <div class="col-lg-8 col-md-6 col-sm-6">
+                                     <span ng-show="form_errors.first_name" class="text-danger">{{form_errors['first_name'][0]}}</span>
+                                    <input type="text" ng-model="first_name" class="form-control" required >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Last Name</label>
+                                <div class="col-sm-8">
+                                     <span ng-show="form_errors.last_name" class="text-danger">{{form_errors['last_name'][0]}}</span>
+                                    <input type="text" ng-model="last_name" class="form-control" required  >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Phone</label>
+                                <div class="col-sm-8">
+                                     <span ng-show="form_errors.phone" class="text-danger">{{form_errors['phone'][0]}}</span>
+                                    <input type="text" ng-model="phone" class="form-control" required >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Address</label>
+                                <div class="col-sm-8">
+                                     <span ng-show="form_errors.address" class="text-danger">{{form_errors['address'][0]}}</span>
+                                    <input type="text" ng-model="address" class="form-control" required >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Area of expertise</label>
+                                <div class="col-sm-8">
+                                     <span ng-show="form_errors.work_area_id" class="text-danger">{{form_errors['work_area_id'][0]}}</span>
+                                    <select class="form-control"  ng-model="work_area_id" ng-options="area.name for area in areas" required >
+                                    <option value="">-- choose area of expertise --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+                         <h3>Login information</h3>
+                           <div class="form-group">
+                                <label class="col-sm-2 control-label">Email</label>
+                                <div class="col-sm-8">
+                                     <span ng-show="form_errors.email" class="text-danger">{{form_errors['email'][0]}}</span>
+                                    <input type="text" class="form-control" ng-model="email" required  >
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                    <label class="col-sm-2 control-label">New Password</label>
+                                    <div class="col-sm-8">
+                                    <span ng-show="form_errors.password" class="text-danger">{{form_errors['password'][0]}}</span>
+                                        <input type="password" class="form-control" ng-model="password">
+                                    </div>
+                            </div>
+                        
+                            <br>
+
+                            <h3>Company information</h3>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Company name</label>
+                                <div class="col-sm-8">
+                                     <span ng-show="form_errors.company_name" class="text-danger">{{form_errors['company_name'][0]}}</span>
+                                    <input type="text" class="form-control" ng-model="company_name" required  >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Company website</label>
+                                <div class="col-sm-8">
+                                     <span ng-show="form_errors.company_web" class="text-danger">{{form_errors['company_web'][0]}}</span>
+                                    <input type="text" class="form-control" ng-model="company_web" required  >
+                                </div>
+                            </div>
+                            <br>
+                            <h3>Biography</h3>
+                            <div class="form-group">
+                                <div class="col-sm-8 col-md-offset-2">
+
+                                    <textarea class="form-control" rows="8" ng-model="biography" >
+                                    </textarea>
+                                </div>
+                            </div>
+                 
+
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <button class="btn btn-sm btn-white" >Cancel</button>
+                            <button class="btn btn-sm btn-primary" type="submit">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+    </div>
+</div>
+</div>
+</div>

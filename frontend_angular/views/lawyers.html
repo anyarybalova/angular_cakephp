@@ -1,0 +1,51 @@
+<header class="header inner-page">
+        <div class="moblie-nav visible-xs">
+            <a href="#menu" id="mmenu"><img src="img/mmenu.png" alt="mobile menu"></a>
+        </div>
+        <nav id="menu">
+              <ul>
+                    <li class="active"><a href="index.html">Check Our Packages </a></li>
+                    <li><a href="askalawyer.html">Ask a lawyer</a></li>
+                    <li><a href="lawyers.html">Our Lawyers</a></li>
+                    <li><a href="mailto:example@test.com">Contact</a></li>
+                    <li class="clearfix"><a href="#" class="profile"><img src="img/icon-man.png" alt="account"></a> <a href="#" class="basket"><img src="img/icon-basket.png" alt="basket"></a></li>
+              </ul>
+        </nav>
+        <div class="container">
+            <div ng-include="'views/common/topnavbar.html'"></div>
+
+            <h1>We have the <span><strong>best lawyers.</strong></span></h1>
+            
+        </div>
+    </header>
+  <!--//Header-->
+	
+  <!--Lawyer-->
+    <section class="lawyers">
+        <div class="container">
+            <div class="row" ng-controller="LawyerCtrl" ng-init="getLawyerList()">
+                <div ng-repeat="lawyer in lawyers">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="lawyer">
+                        <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div ng-if="lawyer.Lawyer.avatar">
+                            <img alt="image" class="img-circle m-t-xs img-responsive image-outer" ng-src="{{url_lawyer_img}}{{lawyer.Lawyer.avatar}}">
+                        </div>
+                        <div ng-if="!lawyer.Lawyer.avatar">
+                            <img alt="image" class="img-circle m-t-xs img-responsive image-outer" ng-src="{{url_lawyer_img}}lawyer2.png">
+                        </div>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                            <h4><a href="#">{{lawyer.Lawyer.first_name}} {{lawyer.Lawyer.last_name}}</a></h4>
+                            <p>{{lawyer.Lawyer.biography}}</p>
+                            <a href="#" class="contact-lawyer">Contact {{lawyer.Lawyer.first_name}} {{lawyer.Lawyer.last_name}}</a>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+               
+            </div>           
+        </div>
+    </section>

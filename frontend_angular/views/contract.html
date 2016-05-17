@@ -1,0 +1,46 @@
+<div class="wrapper" ng-controller="PackageCtrl">
+    <header class="header">
+        <div class="container">
+            <div ng-include="'views/common/topnavbar.html'"></div>
+
+            <div class="bottom-options clearfix" >
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                            <div class="select-wrap" ng-init="getPackageList()">
+                                <select ng-change="showPackageContract()" class="custom-select" ng-model="selectedPackage" ng-options="package.Package.name for package in packages" >
+                                </select>
+                            </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <div class="select-wrap" ng-init="">
+                                <select changed ng-change="changeContract()" class="custom-select" ng-model="selectedContract" ng-options="contract.title for contract in contracts" >
+                                </select>
+                            </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <a href="#" class="add-to-cart" ng-click="addToCartPackage(selectedPackage)" >Add to cart <img src="img/cart-hover.png" alt="Cart Icon"></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+     </header>    
+    <section class="contact">
+        <changed data="{pack_id: pack_id}"></changed>
+    </section>  
+
+  <!--Need Lawyer-->
+  <section class="need-lawyer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-8">
+                <h2>Do you need  <span><strong>a lawyer?</strong></span></h2>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <a ui-sref="index.askalawyer">Ask a lawyer <img src="img/scales.png" alt="scales"> </a>
+            </div>
+        </div>
+    </div>
+  </section>
+</div>

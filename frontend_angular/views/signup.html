@@ -1,0 +1,45 @@
+<div class="inmodal">
+    <div class="signin-overlay" ng-controller="VisitorCtrl">
+    <div class="signin-wrap">
+        <div class="modal-header popup-heading">
+            <h2>Sign Up</h2> <a href="#" class="pop-close"  ng-click="cancelSubmit()" ><img src="img/popup-close.png" alt="close btn"></a>
+            
+         </div>
+         <div class="modal-body login">
+
+            <form ng-submit="submitSignUp()">
+                <div class="form-group">
+                    <label class="control-label">First Name</label>
+                    <input type="text" ng-model="first_name" class="form-control" >
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Last Name</label>
+                    <input type="text" ng-model="last_name" class="form-control" >
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Location</label>
+                    <select class="form-control">
+                        <option value="ca">Canada</option>
+                    </select>
+                </div>
+                <div class="form-group company">
+                    <label class="control-label">Company</label>
+                    <input type="text" class="form-control" ng-model="company_name" >
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Email Adress</label>
+                    <input type="text" class="form-control" ng-model="email" >
+                </div>
+                <div class="form-group no-border" ng-init="error_pass=false">
+                    <label class="control-label">Password</label>
+                    <input type="password" class="form-control" ng-model="password" ng-change="checkPass()" >
+                    <p ng-show="error_pass" class="text-info">Your password is very simple. Please capture a complex password that will have at least: </p>
+                    <p ng-show="error_pass" >{{message_pass}}</p>
+                </div>
+                <div ng-show="errors_signup" class="alert alert-warning" role="alert"><h4 class="text-center">Please capture mandatory information.</h4></div>
+                <input type="submit" value="Submit"> 
+            </form>
+        </div>
+    </div>
+  </div>
+</div>

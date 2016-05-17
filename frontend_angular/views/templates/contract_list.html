@@ -1,0 +1,52 @@
+    <!--contract Detail --> 
+
+    <div ng-controller="PackageCtrl">
+        <div class="container">
+            <div class="inner-wrap">
+            <!--<div class="text-overlay"></div>-->
+
+            <div class="scroll-pane" id="content">
+                <div ng-repeat="contract in contracts">
+                    <div ng-show="((contract.id==contract_id) || (contract_id == -1)) && (contract.id != -1)" class="row" >
+                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                            <h1>{{contract.title}}</h1>
+                         </div>
+                        <div class="package clearfixcol-lg-4 col-md-4 col-sm-4 col-xs-4" >
+                            
+                                <a href="#" type="button" class="btn btn-xm add-to-cart" ng-click="addToCartContract(package_id, contract)" >Add to cart </a>
+                        
+                        </div>
+                        <div class="col-lg-12">
+                    
+                            <p>{{contract.description}}</p>
+                            <p><small><strong>Price: u$s{{contract.price}}</strong></small></p>
+                       </div>
+                        </br>
+                    </div>
+                
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--//contract Detail-->
+
+<script>
+
+
+$(document).ready(function () {
+
+    var container = $('#content').jScrollPane({
+        showArrows: false,
+        autoReinitialise: true
+    });
+    var jsp = container.data('jsp');
+
+    $("#content").on('resize', function(){
+        jsp.reinitialise();
+    });
+
+});
+</script>

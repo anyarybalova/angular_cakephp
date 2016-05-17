@@ -1,0 +1,85 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Packages list</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="index.main">Home</a>
+            </li>
+            <li class="active">
+                <strong>Packages</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+<div class="col-lg-12">
+<div class="wrapper wrapper-content animated fadeInUp">
+
+<div class="ibox">
+<div class="ibox-title">
+    
+    <div class="ibox-tools">
+        <a ui-sref="index.add_package" class="btn btn-primary btn-xs">Create new package</a>
+    </div>
+</div>
+<div class="ibox-content">
+
+<div class="project-list" ng-controller="PackageCtrl" ng-init="getPackageList()">
+    <div class="row m-b-sm m-t-sm">
+        <div class="col-md-1">
+            <button ng-click="refresh()" type="button" id="loading-example-btn" class="btn btn-white btn-sm"><i class="fa fa-refresh"></i> Refresh</button>
+        </div>
+        <div class="col-md-11">
+            <div class="input-group">
+                <input type="text" placeholder="Search" class="input-sm form-control" ng-model="search.Package.$">
+            </div>
+        </div>
+    </div>
+    
+    <table class="table table-hover" ts-wrapper>
+        <thead>
+            <tr>
+              <th ts-criteria="Package.name|lowercase" ts-default>Name</th>
+              <th ts-criteria="Package.description|lowercase">Description</th>
+              <th ts-criteria="Package.price|parseFloat">Price</th>
+              <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        <tr ng-repeat="package in packages  | tablesort | filter:search | startFrom: paginationPackage.page * paginationPackage.perPage | limitTo: paginationPackage.perPage "  ts-repeat>
+            <td class="project-title">
+                <a ng-href="#/index/package/{{package.Package.id}}">{{package.Package.name}}</a>
+            </td>
+           
+            <td class="project-detail">
+                <p>{{package.Package.description}}</p>
+            </td>
+            <td class="project-detail">
+                <p>${{package.Package.price}}</p>
+            
+            </td>
+            <td class="project-actions">
+                <a ng-href="#/index/package/{{package.Package.id}}" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> View </a>
+                <a ng-href="#/index/edit_package/{{package.Package.id}}" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit </a>
+                <a href="" class="btn btn-white btn-sm" ng-click="openModalDelete( package.Package.id, package.Package.name)" ><i class="fa fa-remove"></i> Delete </a>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+
+    <ul class="pagination">
+        <li><a href="" ng-click="paginationPackage.prevPage()">&laquo;</a></li>
+          <li ng-repeat="n in [] | range: paginationPackage.numPages" ng-class="{active: n == paginationPackage.page}">
+          <a href="" ng-click="paginationPackage.toPageId(n)">{{n + 1}}</a>
+          </li>
+          <li><a href="" ng-click="paginationPackage.nextPage()">&raquo;</a></li>
+    </ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>

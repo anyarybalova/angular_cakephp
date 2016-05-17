@@ -1,0 +1,79 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Lawyer Information</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="index.main" >Home</a>
+            </li>
+            <li>
+                <a ui-sref="index.lawyers" >Lawyers</a>
+            </li>
+            <li class="active">
+                <strong>Lawyer</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content" ng-controller="LawyerCtrl" ng-init="getLawyerDetail()">
+    <div class="row animated fadeInRight">
+        <div class="col-md-8">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>{{lawyer.Lawyer.first_name}} {{lawyer.Lawyer.last_name}}</h5>
+                </div>
+                <div>
+                    <div class="col-lg-12 ibox-content no-padding border-left-right">
+                        <div class="col-md-3 col-md-offset-1">
+                            <div ng-if="lawyer.Lawyer.avatar">
+                                 <img alt="image_lawyer" class="img-circle m-t-xs img-responsive " ng-src="{{url_lawyer_img}}{{lawyer.Lawyer.avatar}}">
+                            </div>
+                            <div ng-if="!lawyer.Lawyer.avatar">
+                                <img alt="image_lawyer" class="img-circle m-t-xs img-responsive" ng-src="{{url_lawyer_img}}lawyer2.png">
+                            </div>
+                           
+                            <br/>
+                             <h5>Work Area: <strong>{{lawyer.WorkArea.name}}</strong></h5>
+                             <p>Phone: <strong>{{lawyer.Lawyer.phone }} </strong></p>
+                        </div>
+                        <divc class="col-lg-8">
+                           
+                        
+                        <p><i class="fa fa-map-marker"></i> {{lawyer.Lawyer.address }}</p>
+
+                        <p>Company: <strong>{{lawyer.Lawyer.company_name }} </strong></p>
+                        <p>Web site: <strong>{{lawyer.Lawyer.company_web }} </strong></p>
+                        <h5>
+                            About me
+                        </h5>
+
+                        <p>
+                            {{lawyer.Lawyer.biography}}
+                        </p>
+
+                        <div class="user-button">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <!--
+                                    <button type="button" class="btn btn-primary btn-sm btn-block"><i class="fa fa-envelope"></i> Send e-mail</button>
+                                    -->
+                                    <a ng-href="#/index/edit_lawyer/{{lawyer.Lawyer.id}}" type="button" class="btn btn-white btn-sm btn-block"><i class="fa fa-pencil"></i> Edit </a>
+                                
+                                    <button type="button" class="btn btn-white btn-sm btn-block" ng-click="openModalDelete( lawyer.Lawyer.id, lawyer.Lawyer.first_name, lawyer.Lawyer.last_name)" ><i class="fa fa-trash-o"></i> Delete </button>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>    
+
+
+

@@ -1,0 +1,37 @@
+ <div class="top-header">
+      <div class="row">
+          <div class="col-lg-3 col-md-3 col-sm-3">
+              <a href="index.html" class="logo"><img src="img/logo.png" alt="logo" ></a>
+          </div>
+
+          <div class="col-lg-9 col-md-9 col-sm-9 hidden-xs">
+              <div class="nav-outer">
+                  <nav class="navbar">
+                      <!-- Brand and toggle get grouped for better mobile display -->
+                      <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                          <span class="sr-only">Toggle navigation</span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                        </button>
+                      </div>
+                     
+                      <!-- Collect the nav links, forms, and other content for toggling   -->
+                      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                          <ul class="nav navbar-nav">
+                              <li class="active"><a ui-sref="index.main">Check Our Packages </a></li>
+                              <li><a ui-sref="index.askalawyer">Ask a lawyer</a></li>
+                              <li><a ui-sref="index.lawyers">Our Lawyers</a></li>
+                              <li><a href="mailto:example@gmail.com">Contacts</a></li>
+                              <li><a data-toggle="modal" href="#" data-target="#modal" class="btn btn-white btn-sm" ng-click="openSignIn()" ><img src="img/icon-man.png" alt="account"></a></li>
+                              <li ng-if="items_to_buy.length==0"><a href="#"><img src="img/icon-basket.png" alt="basket"></a></li>
+                              <li ng-if="items_to_buy.length > 0"><a ui-sref="index.checkout" class="count-basket"><img src="img/icon-basket-active.png" alt="basket">{{items_to_buy.length}}</a></li> 
+                          </ul>
+                      </div> 
+                     
+                  </nav>
+              </div>
+          </div>
+      </div>            
+  </div>

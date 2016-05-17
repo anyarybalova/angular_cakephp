@@ -1,0 +1,84 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Edit package</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="index.main">Home</a>
+            </li>
+            <li>
+                <a ui-sref="index.packages" >Packages</a>
+            </li>
+            <li class="active">
+                <strong>Edit package</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+<div class="row">
+    <div class="col-lg-8 col-md-8 col-sm-6">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Edit package information</h5>
+
+               
+            </div>
+            <div class="ibox-content"  ng-controller="PackageCtrl" ng-init="getPackageEdit()" >
+                <form class="form-horizontal" ng-submit="submitPackageEdit(package_id)" >
+                
+                    <div class="form-group"><label class="col-lg-2 control-label">Name</label>
+                        <span ng-show="form_errors.name" class="text-danger">{{form_errors['name'][0]}}</span>
+                        <div class="col-lg-8"><input type="text" ng-model="name" class="form-control" required > 
+                        </div>
+                    </div>
+                    <div class="form-group"><label class="col-lg-2 control-label">Description</label>
+                        <span ng-show="form_errors.description" class="text-danger">{{form_errors['description'][0]}}</span>
+                        <div class="col-lg-8"><textarea class="form-control" ng-model="description" rows="2" required ></textarea></div>
+                    </div>
+                    <div class="form-group"><label class="col-lg-2 control-label">Price</label>
+                        <span ng-show="form_errors.price" class="text-danger">{{form_errors['price'][0]}}</span>
+                        <div class="col-lg-8"><input type="text" ng-model="price" class="form-control" required ></div>
+                    </div>
+
+                    <hr>
+                    <div class="form-group"><label class="col-lg-2 control-label" ng-init="">Contracts</label>   
+                             <div class="col-lg-8">
+                                    <ul class="list-group pre-scrollable" ng-controller="ContractCtrl" ng-init="getContractList()" >
+                                        <li class="list-group-item" ng-repeat="contract in contracts">
+                                            <div class="row" >
+                                                <div class="col-lg-7"><strong>{{contract.Contract.title}}</strong>
+                                                    <br>
+                                                    <small>{{contract.Contract.description}}</small>
+                                                </div>
+                                                <div class="col-lg-2" >
+                                                    <a type="button" ng-href="#/index/contract/{{contract.Contract.id}}" target="_blank" class="btn btn-sm btn-white">View</a>
+                                                </div>
+                                                <div class="col-lg-2" >
+                                                    <a ng-show="(ids.indexOf(contract.Contract.id) == -1)" class="btn btn-sm btn-primary" ng-click="addContractToPack(package_id, contract.Contract.id); ids.push(contract.Contract.id)">Add</a>
+                                                    <a ng-show="(ids.indexOf(contract.Contract.id) != -1)" class="btn btn-sm btn-white" 
+                                                    ng-click="removeContractFromPack(package_id, contract.Contract.id); ids.splice((ids.indexOf(contract.Contract.id)), 1)">Remove</a>
+                                                </div>
+                                            </div>    
+                                       
+                                        </li>
+                                    </ul>
+                            </div> 
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <button class="btn btn-sm btn-white" >Cancel</button>
+                            <button class="btn btn-sm btn-primary" type="submit">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            
+        </div>
+    </div>
+</div>
+</div>

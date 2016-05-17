@@ -1,0 +1,97 @@
+
+<div class="wrapper">
+     <header class="header">
+        <div class="container">
+            <div ng-include="'views/common/topnavbar.html'"></div>
+
+                <div class="bottom-header">
+                    <h1>It’s the largest pool of potential jurors in U.S. history.<br> 
+                    <span>Find out <strong>what lawyers</strong></span> are looking for during jury selection.</h1>
+                </div>
+        </div>
+
+     </header>    
+    <section class="search">
+    <div class="container">
+    <form action="askalawyer.html" method="get">
+        <div class="col-lg-7 col-md-7 col-sm-7">
+            <label>Find the contract you need</label>
+            <div class="search-outer">
+            <input type="text" class="form-control" placeholder="E.g: Startup corporation contract" id="autocomplete">
+            <input type="submit" value="">
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1">
+            <div class="or-line">
+                <span>or</span>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4">
+            <a class="need-lawyer" ui-sref="index.lawyers">I need a lawyer now &nbsp;&nbsp;&nbsp;<img src="img/search-arrow.png" alt="search icon"></a>
+        </div>
+     </form>
+    </div>
+    </section>
+
+    <section class="packages">
+    <div class="container" ng-controller="PackageCtrl" ng-init="showPackages()">
+    <h2>We have several <strong>packages &amp; contracts.</strong></h2>
+        <div class="row" >
+            <div ng-repeat="package in packages | startFrom: paginationPackage.page * paginationPackage.perPage | limitTo: 4">
+                <div class="col-lg-5 col-md-5 col-sm-6">
+                    <div class="package">
+                    <h3>{{package.Package.name}}</h3>
+                    <ul>
+                <li ng-repeat="contract in package.Contract"><a ui-sref="index.contract({package_id: package.Package.id, contract_id: contract.id})" >{{contract.title}}<img src="img/package-icon.png" alt="icon"></a></li>
+                    </ul>
+                    <a href="#" ng-click="addToCartPackage(package)" class="add-to-cart">Add the package to your cart</a>
+                    </div>
+                    <!--<div class="divider"></div>-->
+                </div>
+            </div>
+            
+        </div>
+        <div class="row text-center">
+            <ul class="pagination">
+                <li><a href="" ng-click="paginationPackage.prevPage()">&laquo;</a></li>
+                  <li ng-repeat="n in [] | range: paginationPackage.numPages" ng-class="{active: n == paginationPackage.page}">
+                  <a href="" ng-click="paginationPackage.toPageId(n)">{{n + 1}}</a>
+                  </li>
+                  <li><a href="" ng-click="paginationPackage.nextPage()">&raquo;</a></li>
+            </ul>
+        </div>
+    </div>    
+    </section>
+
+
+    <section class="best-lawyer">
+    <div class="container" ng-controller="LawyerCtrl" ng-init="getRandomLawyers()">
+        <h2>We have <strong>the best lawyers.</strong></h2>
+        <h3>Check their profiles &amp; schedule an appointment with them</h3>
+        <div class="row" >
+            <div ng-repeat="lawyer in randomLawyers ">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="lawyer">
+                        <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div>
+                            <div ng-if="lawyer.Lawyer.avatar">
+                                <img alt="image" class="img-circle m-t-xs img-responsive image-outer" ng-src="{{url_lawyer_img}}{{lawyer.Lawyer.avatar}}">
+                            </div>
+                            <div ng-if="!lawyer.Lawyer.avatar">
+                                <img alt="image" class="img-circle m-t-xs img-responsive image-outer" ng-src="{{url_lawyer_img}}lawyer2.png">
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8">
+                            <h4><a ui-sref="index.lawyers">{{ lawyer.Lawyer.first_name }} {{ lawyer.Lawyer.last_name }}</a></h4>
+                            <p>{{ lawyer.Lawyer.biography }}</p>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+</div>
